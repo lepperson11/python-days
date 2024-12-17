@@ -47,7 +47,6 @@ with open("movies.txt", mode="w") as file:
 # print(article_upvote[index_num])
 
 
-
 # # import lxml
 
 
