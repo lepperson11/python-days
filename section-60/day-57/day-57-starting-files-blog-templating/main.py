@@ -1,20 +1,25 @@
 from flask import Flask, render_template
-from post import Post
+import requests
 
-post = ""
 app = Flask(__name__)
 
-
 @app.route('/')
-def blog_endpoint():
-    return render_template("index.html", all_posts=post.get_all())
+def home():
+    blog_url = "https://api.npoint.io/c790b4d5cab58020d391"
+    response = requests.get(blog_url)
+    all_posts = response.json()
+    return render_template("index.html", posts=all_posts)
 
-
-@app.route('/post/<post_id>')
-def post_endpoint(post_id):
-    return render_template("post.html", post=post.get_by_id(post_id=post_id))
-
+@app.route("/post/<num>")
+def get_post(num):
+    blog_url = "https://api.npoint.io/c790b4d5cab58020d391"
+    response = requests.get(blog_url)
+    all_posts = response.json()
+    single_post = None
+    for post in all_posts:
+        if post["id"] == int(num):
+            single_post = post
+    return render_template("post.html", posts=single_post)
 
 if __name__ == "__main__":
-    post = Post()
     app.run(debug=True)
