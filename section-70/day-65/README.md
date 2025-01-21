@@ -1,0 +1,1 @@
+This day ended up being about UI/UX design but did not involve coding here is the link to a website thing created from canva, this was from following along with the videos. https://day-65-python.my.canva.site/
